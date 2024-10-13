@@ -4,7 +4,7 @@ backend:
   replicaCount: 2
   image:
     repository: "sororiri/memo-backend"
-    tag: 25
+    tag: 26
 # frontend
 frontend:
   name: memo-frontend
