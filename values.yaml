@@ -10,7 +10,7 @@ frontend:
   name: memo-frontend
   replicaCount: 1
   image:
-    repository: "sororiri/memo-front"
+    repository: "sororiri/memo-frontend"
     tag: 1
 # ingress
 ingress:
