@@ -4,7 +4,7 @@ backend:
   replicaCount: 2
   image:
     repository: "sororiri/memo-backend"
-    tag: 9
+    tag: 1
   env:
     - name: BACKEND_URL
       value: https://memoapi.entto.shop
