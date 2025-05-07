@@ -5,16 +5,48 @@ backend:
   image:
     repository: "sororiri/memo-backend"
     tag: 9
+  env:
+    - name: BACKEND_URL
+      value: https://memoapi.entto.shop
+    - name: BACKEND_PORT
+      value: "3001"
+    - name: JWT_SECRET
+      value: leesecret
+    - name: HASH_ROUNDS
+      value: "7"
+    - name: DB_HOST
+      value: "postgres.database.svc"
+    - name: DB_PORT
+      value: "5432"
+    - name: DB_TYPE
+      value: postgres
+    - name: DB_USERNAME
+      value: postgres
+    - name: DB_PASSWORD
+      value: dltkddbs12
+    - name: DB_DATABASE
+      value: postgres
+  volumes:
+    - name: host-path-volume
+      hostPath:
+        path: /data/nfs-w1
+  volumeMounts:
+    - name: host-path-volume
+      mountPath: /app/public
+      subPath: memo/public
+
 # frontend
 frontend:
   name: memo-frontend
   replicaCount: 1
   image:
     repository: "sororiri/memo-frontend"
-    tag: 3
+    tag: 21
 # ingress
 ingress:
   backend:
     host: memoapi.entto.shop
   frontend:
     host: memo.entto.shop
+
+namespace: memo

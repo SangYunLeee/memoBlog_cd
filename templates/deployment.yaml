@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.backend.name }}
-  annotations:
-    reloader.stakater.com/auto: "true"
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
@@ -21,9 +20,8 @@ spec:
         name: {{ .Values.backend.name }}
         ports:
         - containerPort: 3001
-        envFrom:
-        - configMapRef:
-            name: backend-config
+        env:
+          {{- toYaml .Values.backend.env | nindent 10 }}
         resources:
           requests:
             memory: "400Mi"
@@ -35,18 +33,14 @@ spec:
           httpGet:
             path: /
             port: 3001
-          initialDelaySeconds: 110
+          initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 2
           failureThreshold: 10
         volumeMounts:
-        - name: host-path-volume
-          mountPath: /app/public
-          subPath: memo/public
+          {{- toYaml .Values.backend.volumeMounts | nindent 10 }}
       volumes:
-        - name: host-path-volume
-          hostPath:
-            path: /data/nfs1
+          {{- toYaml .Values.backend.volumes | nindent 8 }}
 
 ---
 
@@ -54,8 +48,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.frontend.name }}
-  annotations:
-    reloader.stakater.com/auto: "true"
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
