@@ -34,19 +34,17 @@ backend:
     - name: host-path-volume
       mountPath: /app/public
       subPath: memo/public
-
 # frontend
 frontend:
   name: memo-frontend
   replicaCount: 1
   image:
     repository: "sororiri/memo-frontend"
-    tag: 21
+    tag: 4
 # ingress
 ingress:
   backend:
     host: memoapi.entto.shop
   frontend:
     host: memo.entto.shop
-
 namespace: memo
