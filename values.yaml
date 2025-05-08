@@ -40,7 +40,7 @@ frontend:
   replicaCount: 1
   image:
     repository: "sororiri/memo-frontend"
-    tag: 5
+    tag: 2
 # ingress
 ingress:
   backend:
