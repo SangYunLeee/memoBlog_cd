@@ -18,6 +18,12 @@ spec:
   - hosts:
     - {{ .Values.ingress.frontend.host }}
     secretName: {{ .Values.ingress.frontend.host }}-tls
+  - hosts:
+    - api.memou.shop
+    secretName: api.memou.shop-tls
+  - hosts:
+    - www.memou.shop
+    secretName: www.memou.shop-tls
   rules:
   - host: {{ .Values.ingress.backend.host }}
     http:
@@ -39,3 +45,23 @@ spec:
             name: {{ .Values.frontend.name }}
             port:
               number: 80
+  - host: api.memou.shop	
+    http:	
+      paths:	
+        - backend:	
+            service:	
+              name: memo-backend	
+              port:	
+                number: 80	
+          path: /	
+          pathType: Prefix
+  - host: www.memou.shop	
+    http:	
+      paths:	
+        - backend:	
+            service:	
+              name: memo-frontend	
+              port:	
+                number: 80	
+          path: /	
+          pathType: Prefix

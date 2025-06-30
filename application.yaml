@@ -11,6 +11,6 @@ spec:
     helm:
       valueFiles:
       - values.yaml
-    path: memo
+    path: .
     repoURL: https://github.com/SangYunLeee/memoBlog_cd.git
     targetRevision: HEAD

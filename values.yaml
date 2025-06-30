@@ -7,7 +7,7 @@ backend:
     tag: 2
   env:
     - name: BACKEND_URL
-      value: https://memoapi.entto.shop
+      value: https://api.memou.shop
     - name: BACKEND_PORT
       value: "3001"
     - name: JWT_SECRET
