@@ -1,6 +1,8 @@
+name: memo
 # backend
 backend:
-  name: memo-backend
+  nodeSelector:
+    kubernetes.io/hostname: node1
   replicaCount: 2
   image:
     repository: "sororiri/memo-backend"
@@ -15,7 +17,7 @@ backend:
     - name: HASH_ROUNDS
       value: "7"
     - name: DB_HOST
-      value: "postgres.database.svc"
+      value: "postgres.memo-prd.svc"
     - name: DB_PORT
       value: "5432"
     - name: DB_TYPE
@@ -36,7 +38,6 @@ backend:
       subPath: memo/public
 # frontend
 frontend:
-  name: memo-frontend
   replicaCount: 1
   image:
     repository: "sororiri/memo-frontend"

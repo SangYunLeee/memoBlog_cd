@@ -1,14 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.backend.name }}
+  name: {{ .Values.name }}-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-  namespace: {{ .Values.namespace }}
 spec:
   ingressClassName: nginx
   tls:
@@ -32,7 +31,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.backend.name }}
+            name: {{ .Values.name }}-backend
             port:
               number: 80
   - host: {{ .Values.ingress.frontend.host }}
@@ -42,7 +41,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Values.frontend.name }}
+            name: {{ .Values.name }}-frontend
             port:
               number: 80
   - host: api.memou.shop	
@@ -50,7 +49,7 @@ spec:
       paths:	
         - backend:	
             service:	
-              name: memo-backend	
+              name: {{ .Values.name }}-backend	
               port:	
                 number: 80	
           path: /	
@@ -60,7 +59,7 @@ spec:
       paths:	
         - backend:	
             service:	
-              name: memo-frontend	
+              name: {{ .Values.name }}-frontend	
               port:	
                 number: 80	
           path: /	

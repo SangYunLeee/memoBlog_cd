@@ -1,23 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.backend.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}-backend
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.backend.name }}
+      app: {{ .Values.name }}-backend
   replicas: {{ .Values.backend.replicaCount }}
   template:
     metadata:
       labels:
-        app: {{ .Values.backend.name }}
+        app: {{ .Values.name }}-backend
         tier: backend
     spec:
+      nodeSelector:
+        {{ toYaml .Values.backend.nodeSelector }}
       containers:
       - image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
         imagePullPolicy: Always
-        name: {{ .Values.backend.name }}
+        name: {{ .Values.name }}-backend
         ports:
         - containerPort: 3001
         env:
@@ -47,23 +48,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.frontend.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}-frontend
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.frontend.name }}
+      app: {{ .Values.name }}-frontend
   replicas: {{ .Values.frontend.replicaCount }}
   template:
     metadata:
       labels:
-        app: {{ .Values.frontend.name }}
+        app: {{ .Values.name }}-frontend
         tier: frontend
     spec:
       containers:
       - image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
         imagePullPolicy: Always
-        name: {{ .Values.frontend.name }}
+        name: {{ .Values.name }}-frontend
         ports:
         - containerPort: 80
         resources:
