@@ -12,12 +12,6 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - {{ .Values.ingress.backend.host }}
-    secretName: {{ .Values.ingress.backend.host }}-tls
-  - hosts:
-    - {{ .Values.ingress.frontend.host }}
-    secretName: {{ .Values.ingress.frontend.host }}-tls
-  - hosts:
     - api.memou.shop
     secretName: api.memou.shop-tls
   - hosts:

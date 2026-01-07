@@ -42,10 +42,3 @@ frontend:
   image:
     repository: "sororiri/memo-frontend"
     tag: 17
-# ingress
-ingress:
-  backend:
-    host: memoapi.entto.shop
-  frontend:
-    host: memo.entto.shop
-namespace: memo
