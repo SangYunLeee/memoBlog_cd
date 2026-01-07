@@ -1,0 +1,34 @@
+namespace: database
+
+image:
+  repository: postgres
+  tag: 15
+
+nodeSelector:
+  database: "true"
+
+env:
+  - name: POSTGRES_USER
+    value: postgres
+  - name: POSTGRES_PASSWORD
+    value: dltkddbs12
+  - name: POSTGRES_DB
+    value: postgres
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+volumes:
+  - name: data
+    hostPath:
+      path: /k8s/project/memo/dev/postgres/data
+      type: DirectoryOrCreate
+
+service:
+  type: NodePort
+  nodePort: 30011

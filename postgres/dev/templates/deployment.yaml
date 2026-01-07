@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: postgres-application
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      nodeSelector:
+        {{ toYaml .Values.nodeSelector }}
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
+      containers:
+        - env:
+            {{- toYaml .Values.env | nindent 10 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          name: postgres
+          ports:
+            - containerPort: 5432
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: data
+      volumes:
+        {{- toYaml .Values.volumes | nindent 8 }}

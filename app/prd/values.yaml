@@ -35,7 +35,7 @@ backend:
   volumeMounts:
     - name: host-path-volume
       mountPath: /app/public
-      subPath: memo/public
+      subPath: memo/prd/public
 # frontend
 frontend:
   replicaCount: 1
