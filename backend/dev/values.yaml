@@ -6,7 +6,7 @@ app:
   replicaCount: 2
   image:
     repository: "sororiri/memo-backend"
-    tag: 2
+    tag: dev-4
   env:
     - name: BACKEND_URL
       value: https://api-dev.memou.shop
@@ -36,7 +36,6 @@ app:
     - name: host-path-volume
       mountPath: /app/public
       subPath: memo/dev/public
-
 # ingress
 ingress:
   host: api-dev.memou.shop
