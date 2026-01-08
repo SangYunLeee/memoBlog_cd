@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: memo-dev-frontend
+  name: memo-prd-frontend
   namespace: argocd
 spec:
   destination:
-    namespace: memo-dev
+    namespace: memo-prd
     server: https://kubernetes.default.svc
-  project: default
+  project: memou
   source:
     helm:
       valueFiles:
       - values.yaml
-    path: frontend/dev
+    path: frontend/prd
     repoURL: https://github.com/SangYunLeee/memoBlog_cd.git
     targetRevision: HEAD

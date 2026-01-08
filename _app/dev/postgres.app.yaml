@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: memo-dev-backend
+  name: memo-dev-postgres
   namespace: argocd
 spec:
   destination:
@@ -12,6 +12,6 @@ spec:
     helm:
       valueFiles:
       - values.yaml
-    path: backend/dev
+    path: postgres/dev
     repoURL: https://github.com/SangYunLeee/memoBlog_cd.git
     targetRevision: HEAD

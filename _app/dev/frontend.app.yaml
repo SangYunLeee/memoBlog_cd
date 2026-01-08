@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: memo-dev
     server: https://kubernetes.default.svc
-  project: default
+  project: memou
   source:
     helm:
       valueFiles:

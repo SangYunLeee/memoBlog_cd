@@ -1,17 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: memo-prd-postgres
+  name: memou-prd-apps
   namespace: argocd
 spec:
   destination:
-    namespace: memo-prd
+    namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
+  project: memou
   source:
-    helm:
-      valueFiles:
-      - values.yaml
-    path: postgres/prd
+    path: _app/prd
     repoURL: https://github.com/SangYunLeee/memoBlog_cd.git
     targetRevision: HEAD

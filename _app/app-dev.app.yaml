@@ -1,17 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: memo-dev-backend
+  name: memou-dev-apps
   namespace: argocd
 spec:
   destination:
-    namespace: memo-dev
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: memou
   source:
-    helm:
-      valueFiles:
-      - values.yaml
-    path: backend/dev
+    path: _app/dev
     repoURL: https://github.com/SangYunLeee/memoBlog_cd.git
     targetRevision: HEAD
