@@ -36,3 +36,7 @@ app:
     - name: host-path-volume
       mountPath: /app/public
       subPath: memo/prd/public
+
+# ingress
+ingress:
+  host: api.memou.shop
