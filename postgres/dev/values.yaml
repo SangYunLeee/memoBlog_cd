@@ -11,7 +11,7 @@ env:
   - name: POSTGRES_USER
     value: postgres
   - name: POSTGRES_PASSWORD
-    value: dltkddbs12
+    value: postgres
   - name: POSTGRES_DB
     value: postgres
 
