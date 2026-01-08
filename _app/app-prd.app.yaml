@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: memou
+  project: memou-prd
   source:
     path: _app/prd
     repoURL: https://github.com/SangYunLeee/memoBlog_cd.git
