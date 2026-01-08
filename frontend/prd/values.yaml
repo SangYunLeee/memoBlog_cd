@@ -1,0 +1,10 @@
+name: memo-frontend
+
+app:
+  replicaCount: 1
+  image:
+    repository: "sororiri/memo-frontend"
+    tag: 17
+
+ingress:
+  host: www.memou.shop

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  replicas: {{ .Values.app.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+        tier: frontend
+    spec:
+      containers:
+      - image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+        imagePullPolicy: Always
+        name: {{ .Values.name }}
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "200m"
+          limits:
+            memory: "500Mi"
+            cpu: "200m"
