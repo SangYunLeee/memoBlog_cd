@@ -3,6 +3,6 @@ app:
   replicaCount: 1
   image:
     repository: "sororiri/memo-frontend"
-    tag: dev-3
+    tag: dev-5
 ingress:
   host: www-dev.memou.shop
