@@ -9,7 +9,7 @@ app:
     tag: dev-4
   env:
     - name: BACKEND_URL
-      value: https://{{ .Values.ingress.host }}
+      value: https://api-dev.memomu.shop
     - name: BACKEND_PORT
       value: "3001"
     - name: JWT_SECRET
