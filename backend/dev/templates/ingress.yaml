@@ -12,16 +12,20 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - {{ .Values.ingress.host }}
-    secretName: {{ .Values.ingress.host }}-tls
+    {{- range .Values.ingress }}
+    - {{ . }}
+    {{- end }}
+    secretName: {{ index .Values.ingress 0 }}-tls
   rules:
-  - host: {{ .Values.ingress.host }}	
-    http:	
-      paths:	
-        - backend:	
-            service:	
-              name: {{ .Values.name }}	
-              port:	
-                number: 80	
-          path: /	
+  {{- range .Values.ingress }}
+  - host: {{ . }}
+    http:
+      paths:
+        - backend:
+            service:
+              name: {{ $.Values.name }}
+              port:
+                number: 80
+          path: /
           pathType: Prefix
+  {{- end }}

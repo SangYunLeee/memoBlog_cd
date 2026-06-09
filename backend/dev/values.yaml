@@ -38,4 +38,5 @@ app:
       subPath: memo/dev/public
 # ingress
 ingress:
-  host: api-dev.memomu.shop
+  - api-dev.memomu.shop
+  - api-dev.memomu.uk
