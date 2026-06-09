@@ -3,7 +3,7 @@ app:
   replicaCount: 1
   image:
     repository: "sororiri/memo-frontend"
-    tag: dev-10
+    tag: dev-11
 ingress:
   - www-dev.memomu.shop
   - www-dev.memomu.uk
