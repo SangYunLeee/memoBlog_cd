@@ -5,4 +5,5 @@ app:
     repository: "sororiri/memo-frontend"
     tag: dev-9
 ingress:
-  host: www-dev.memomu.shop
+  - www-dev.memomu.shop
+  - www-dev.memomu.uk
