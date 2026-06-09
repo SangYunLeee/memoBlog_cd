@@ -12,11 +12,11 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - {{ .Values.ingress[0] }}
-    - {{ .Values.ingress[1] }}
-    secretName: {{ .Values.ingress[0] }}-tls
+    - {{ index .Values.ingress 0 }}
+    - {{ index .Values.ingress 1 }}
+    secretName: {{ index .Values.ingress 0 }}-tls
   rules:
-  - host: {{ .Values.ingress[0] }}	
+  - host: {{ index .Values.ingress 0 }}
     http:	
       paths:	
         - backend:	
@@ -26,7 +26,7 @@ spec:
                 number: 80	
           path: /	
           pathType: Prefix
-  - host: {{ .Values.ingress[1] }}	
+  - host: {{ index .Values.ingress 1 }}
     http:	
       paths:	
         - backend:	
